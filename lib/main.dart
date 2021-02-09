@@ -125,8 +125,8 @@ class _ResultsYearsState extends State<ResultsYears> {
   DateTime startDate;
   DateTime endDate;
 
-  String startDateLabel;
-  String endDateLabel;
+  String startDateLabel = "MMMM, DD, YYYY";
+  String endDateLabel = "MMMM, DD, YYYY";
 
   void startDatePicker() {
     DatePicker.showDatePicker(context,
