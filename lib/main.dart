@@ -71,7 +71,7 @@ class _ResultsYearsState extends State<ResultsYears> {
       margin: EdgeInsets.fromLTRB(0, 100, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [startDateInput(), endDateInput(), ResultsYears()],
+        children: [startDateInput(), endDateInput()],
       ),
     );
   }
@@ -87,6 +87,12 @@ class _ResultsYearsState extends State<ResultsYears> {
                   "Years",
                   textScaleFactor: 1.6,
                 ),
+                Container(
+                    margin: EdgeInsets.only(top: 75),
+                    child: Text(
+                      "$years",
+                      textScaleFactor: 3,
+                    ))
               ],
             )));
   }
@@ -102,6 +108,12 @@ class _ResultsYearsState extends State<ResultsYears> {
                   "Months",
                   textScaleFactor: 1.6,
                 ),
+                Container(
+                    margin: EdgeInsets.only(top: 75),
+                    child: Text(
+                      "$months",
+                      textScaleFactor: 3,
+                    ))
               ],
             )));
   }
@@ -116,7 +128,13 @@ class _ResultsYearsState extends State<ResultsYears> {
                 Text(
                   "Days",
                   textScaleFactor: 1.6,
-                )
+                ),
+                Container(
+                    margin: EdgeInsets.only(top: 75),
+                    child: Text(
+                      "$days",
+                      textScaleFactor: 3,
+                    ))
               ],
             )));
   }
