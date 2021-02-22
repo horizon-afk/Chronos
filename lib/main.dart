@@ -43,7 +43,7 @@ class _ResultsYearsState extends State<ResultsYears> {
         margin: EdgeInsets.fromLTRB(25, 60, 10, 0),
         child: Row(children: [
           Container(
-              margin: EdgeInsets.only(right: 40),
+              margin: EdgeInsets.only(right: 50),
               child: Text(
                 "Start Date",
                 textScaleFactor: 1.5,
@@ -57,7 +57,7 @@ class _ResultsYearsState extends State<ResultsYears> {
         margin: EdgeInsets.fromLTRB(25, 5, 10, 0),
         child: Row(children: [
           Container(
-              margin: EdgeInsets.only(right: 50),
+              margin: EdgeInsets.only(right: 60),
               child: Text(
                 "End Date",
                 textScaleFactor: 1.5,
@@ -137,6 +137,44 @@ class _ResultsYearsState extends State<ResultsYears> {
                     ))
               ],
             )));
+  }
+
+  Widget totalDays() {
+    return Container(
+        child: Column(
+      children: [
+        Container(
+            child: Text(
+          "Total Days",
+          textScaleFactor: 1.5,
+          textAlign: TextAlign.left,
+        ))
+      ],
+    ));
+  }
+
+  Widget totalHours() {
+    return Container(
+        margin: EdgeInsets.only(left: 155),
+        child: Column(
+          children: [
+            Container(
+                child: Text(
+              "Total Hours",
+              textScaleFactor: 1.5,
+              textAlign: TextAlign.right,
+            ))
+          ],
+        ));
+  }
+
+  Widget totalValues() {
+    return Container(
+      margin: EdgeInsets.only(left: 25, top: 10),
+      child: Row(
+        children: [totalDays(), totalHours()],
+      ),
+    );
   }
 
   DateTime currentDate = DateTime.now();
@@ -219,7 +257,11 @@ class _ResultsYearsState extends State<ResultsYears> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
-            children: [startDateInput(), endDateInput(), resultContainer()]));
+        child: Column(children: [
+      startDateInput(),
+      endDateInput(),
+      resultContainer(),
+      totalValues()
+    ]));
   }
 }
