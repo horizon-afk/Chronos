@@ -219,7 +219,7 @@ class _ResultsYearsState extends State<ResultsYears> {
   }
 
   Widget startPicker() {
-    return FlatButton(
+    return TextButton(
         onPressed: startDatePicker,
         child: Container(
             width: 200,
@@ -232,7 +232,7 @@ class _ResultsYearsState extends State<ResultsYears> {
   }
 
   Widget endPicker() {
-    return FlatButton(
+    return TextButton(
         onPressed: endDatePicker,
         child: Container(
             width: 200,
