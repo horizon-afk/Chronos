@@ -38,6 +38,9 @@ class _ResultsYearsState extends State<ResultsYears> {
   int months = 00;
   int days = 00;
 
+  int total_days = 0;
+  int total_hours = 0;
+
   Widget startDateInput() {
     return Container(
         margin: EdgeInsets.fromLTRB(25, 60, 10, 0),
@@ -148,7 +151,10 @@ class _ResultsYearsState extends State<ResultsYears> {
           "Total Days",
           textScaleFactor: 1.5,
           textAlign: TextAlign.left,
-        ))
+        )),
+        Container(
+          child: Text("$total_days", textScaleFactor: 2),
+        )
       ],
     ));
   }
@@ -163,7 +169,13 @@ class _ResultsYearsState extends State<ResultsYears> {
               "Total Hours",
               textScaleFactor: 1.5,
               textAlign: TextAlign.right,
-            ))
+            )),
+            Container(
+              child: Text(
+                "$total_hours",
+                textScaleFactor: 2,
+              ),
+            )
           ],
         ));
   }
@@ -184,6 +196,16 @@ class _ResultsYearsState extends State<ResultsYears> {
   String startDateLabel = "MMMM, DD, YYYY";
   String endDateLabel = "MMMM, DD, YYYY";
 
+  void updateTotalDays() {
+    Duration diffDays = endDate.difference(startDate);
+    total_days = diffDays.inDays;
+  }
+
+  void updateTotalHours() {
+    Duration diffHours = endDate.difference(startDate);
+    total_hours = diffHours.inHours;
+  }
+
   void startDatePicker() {
     DatePicker.showDatePicker(context,
         showTitleActions: true,
@@ -192,11 +214,15 @@ class _ResultsYearsState extends State<ResultsYears> {
       setState(() {
         startDate = date;
         startDateLabel = DateFormat.yMMMMd().format(date);
+        updateTotalDays();
+        updateTotalHours();
       });
     }, onConfirm: (date) {
       setState(() {
         startDate = date;
         startDateLabel = DateFormat.yMMMMd().format(date);
+        updateTotalDays();
+        updateTotalHours();
       });
     });
   }
@@ -209,11 +235,15 @@ class _ResultsYearsState extends State<ResultsYears> {
       setState(() {
         endDate = date;
         endDateLabel = DateFormat.yMMMMd().format(date);
+        updateTotalDays();
+        updateTotalHours();
       });
     }, onConfirm: (date) {
       setState(() {
         endDate = date;
         endDateLabel = DateFormat.yMMMMd().format(date);
+        updateTotalDays();
+        updateTotalHours();
       });
     });
   }
