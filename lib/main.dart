@@ -43,37 +43,36 @@ class _ResultsYearsState extends State<ResultsYears> {
 
   Widget startDateInput() {
     return Container(
-        margin: EdgeInsets.fromLTRB(25, 60, 10, 0),
-        child: Row(children: [
+        margin: EdgeInsets.fromLTRB(25, 60, 17, 0),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Container(
-              margin: EdgeInsets.only(right: 50),
               child: Text(
-                "Start Date",
-                textScaleFactor: 1.5,
-              )),
+            "Start Date",
+            textScaleFactor: 1.5,
+          )),
           startPicker(),
         ]));
   }
 
   Widget endDateInput() {
     return Container(
-        margin: EdgeInsets.fromLTRB(25, 5, 10, 0),
-        child: Row(children: [
+        margin: EdgeInsets.fromLTRB(25, 5, 17, 0),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Container(
-              margin: EdgeInsets.only(right: 60),
               child: Text(
-                "End Date",
-                textScaleFactor: 1.5,
-              )),
+            "End Date",
+            textScaleFactor: 1.5,
+          )),
           endPicker(),
         ]));
   }
 
   Widget inputField() {
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 100, 0, 0),
+      margin: EdgeInsets.only(top: 100),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [startDateInput(), endDateInput()],
       ),
     );
@@ -146,12 +145,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     return Container(
         child: Column(
       children: [
-        Container(
-            child: Text(
-          "Total Days",
-          textScaleFactor: 1.5,
-          textAlign: TextAlign.left,
-        )),
+        Container(child: Text("Total Days", textScaleFactor: 1.5)),
         Container(
           child: Text("$total_days", textScaleFactor: 2),
         )
@@ -161,29 +155,28 @@ class _ResultsYearsState extends State<ResultsYears> {
 
   Widget totalHours() {
     return Container(
-        margin: EdgeInsets.only(left: 155),
         child: Column(
-          children: [
-            Container(
-                child: Text(
-              "Total Hours",
-              textScaleFactor: 1.5,
-              textAlign: TextAlign.right,
-            )),
-            Container(
-              child: Text(
-                "$total_hours",
-                textScaleFactor: 2,
-              ),
-            )
-          ],
-        ));
+      children: [
+        Container(
+            child: Text(
+          "Total Hours",
+          textScaleFactor: 1.5,
+        )),
+        Container(
+          child: Text(
+            "$total_hours",
+            textScaleFactor: 2,
+          ),
+        )
+      ],
+    ));
   }
 
   Widget totalValues() {
     return Container(
-      margin: EdgeInsets.only(left: 25, top: 10),
+      margin: EdgeInsets.only(left: 25, top: 10, right: 25),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [totalDays(), totalHours()],
       ),
     );
@@ -271,29 +264,27 @@ class _ResultsYearsState extends State<ResultsYears> {
   }
 
   Widget startPicker() {
-    return TextButton(
-        onPressed: startDatePicker,
-        child: Container(
-            width: 200,
-            child: Text(
+    return Container(
+        child: TextButton(
+            onPressed: startDatePicker,
+            child: Container(
+                child: Text(
               '$startDateLabel',
               style: TextStyle(color: Colors.blue),
               textScaleFactor: 1.5,
-              textAlign: TextAlign.right,
-            )));
+            ))));
   }
 
   Widget endPicker() {
-    return TextButton(
-        onPressed: endDatePicker,
-        child: Container(
-            width: 200,
-            child: Text(
+    return Container(
+        child: TextButton(
+            onPressed: endDatePicker,
+            child: Container(
+                child: Text(
               '$endDateLabel',
               style: TextStyle(color: Colors.blue),
               textScaleFactor: 1.5,
-              textAlign: TextAlign.right,
-            )));
+            ))));
   }
 
   Widget resultContainer() {
@@ -306,14 +297,39 @@ class _ResultsYearsState extends State<ResultsYears> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget app() {
     return Container(
         child: Column(children: [
       startDateInput(),
       endDateInput(),
       resultContainer(),
-      totalValues()
+      totalValues(),
     ]));
+  }
+
+  Widget credits() {
+    final screenSize = MediaQuery.of(context).size;
+    final width = screenSize.width;
+    final height = screenSize.height;
+    return Container(
+        height: height / 10,
+        width: width,
+        color: Colors.blue[800],
+        child: Center(child:Text(
+          "© Umesh Kumar Sarkar",
+          textScaleFactor: 1.5,
+          
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        )));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [app(), credits()]));
   }
 }
