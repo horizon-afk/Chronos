@@ -41,6 +41,7 @@ class _ResultsYearsState extends State<ResultsYears> {
   int total_days = 0;
   int total_hours = 0;
 
+  // the start label
   Widget startDateInput() {
     return Container(
         margin: EdgeInsets.fromLTRB(25, 60, 17, 0),
@@ -55,6 +56,7 @@ class _ResultsYearsState extends State<ResultsYears> {
         ]));
   }
 
+  //the end label
   Widget endDateInput() {
     return Container(
         margin: EdgeInsets.fromLTRB(25, 5, 17, 0),
@@ -69,6 +71,7 @@ class _ResultsYearsState extends State<ResultsYears> {
         ]));
   }
 
+  // the top two coloumn containing labels and idate picker
   Widget inputField() {
     return Container(
       margin: EdgeInsets.only(top: 100),
@@ -78,6 +81,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     );
   }
 
+  // the left part of middle box containing year with the output
   Widget yearLabel() {
     return Expanded(
         child: Container(
@@ -99,6 +103,7 @@ class _ResultsYearsState extends State<ResultsYears> {
             )));
   }
 
+  // the middle part of middle box containing month with the output
   Widget monthLabel() {
     return Expanded(
         child: Container(
@@ -120,6 +125,7 @@ class _ResultsYearsState extends State<ResultsYears> {
             )));
   }
 
+  // the right part of middle box containing days with the output
   Widget dayLabel() {
     return Expanded(
         child: Container(
@@ -141,6 +147,7 @@ class _ResultsYearsState extends State<ResultsYears> {
             )));
   }
 
+  // this label shows the total number of days including the days in years and months
   Widget totalDays() {
     return Container(
         child: Column(
@@ -153,6 +160,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     ));
   }
 
+  // this label shows the total number of hours including the hours in years and months
   Widget totalHours() {
     return Container(
         child: Column(
@@ -172,6 +180,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     ));
   }
 
+  // the bottom row which shows the total days and total hours
   Widget totalValues() {
     return Container(
       margin: EdgeInsets.only(left: 25, top: 10, right: 25),
@@ -182,13 +191,15 @@ class _ResultsYearsState extends State<ResultsYears> {
     );
   }
 
-  DateTime currentDate = DateTime.now();
+
   DateTime startDate;
   DateTime endDate;
 
+  // this is shown as a string so as to print the button from displaying null
   String startDateLabel = "MMMM, DD, YYYY";
   String endDateLabel = "MMMM, DD, YYYY";
 
+  //the function which converts total number of days to years, months and days
   void updateYYMMDD(int totalDays) {
     if (totalDays < 30) {
       days = totalDays;
@@ -203,6 +214,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     }
   }
 
+  // processes start date and end date and converts them to total days
   void updateTotalDays() {
     if (startDate != null && endDate != null) {
       Duration diffDays = endDate.difference(startDate);
@@ -210,6 +222,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     }
   }
 
+  // processes start date and end date and converts them to total hours
   void updateTotalHours() {
     if (startDate != null && endDate != null) {
       Duration diffHours = endDate.difference(startDate);
@@ -217,6 +230,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     }
   }
 
+  // the date picker which lets the user to pick dates(start date)
   void startDatePicker() {
     DatePicker.showDatePicker(context,
         showTitleActions: true,
@@ -240,6 +254,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     });
   }
 
+  // the date picker which lets the user pick dates(end date)
   void endDatePicker() {
     DatePicker.showDatePicker(context,
         showTitleActions: true,
@@ -263,6 +278,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     });
   }
 
+  // the button which opens the start date picker
   Widget startPicker() {
     return Container(
         child: TextButton(
@@ -275,6 +291,7 @@ class _ResultsYearsState extends State<ResultsYears> {
             ))));
   }
 
+  // the button which opens the end date picker
   Widget endPicker() {
     return Container(
         child: TextButton(
@@ -287,6 +304,7 @@ class _ResultsYearsState extends State<ResultsYears> {
             ))));
   }
 
+  // the main box which contains the years, months and days
   Widget resultContainer() {
     return Container(
       margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
@@ -297,6 +315,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     );
   }
 
+  // the column of all widgets except the credits
   Widget app() {
     return Container(
         child: Column(children: [
@@ -307,7 +326,9 @@ class _ResultsYearsState extends State<ResultsYears> {
     ]));
   }
 
+  // the credits widget shows the name of the developer at the botto
   Widget credits() {
+    // gets the screen size
     final screenSize = MediaQuery.of(context).size;
     final width = screenSize.width;
     final height = screenSize.height;
@@ -318,7 +339,6 @@ class _ResultsYearsState extends State<ResultsYears> {
         child: Center(child:Text(
           "© Umesh Kumar Sarkar",
           textScaleFactor: 1.5,
-          
           style: TextStyle(
             color: Colors.white,
           ),
