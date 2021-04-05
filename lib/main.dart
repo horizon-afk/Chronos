@@ -13,7 +13,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Chronos',
-      theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
+      theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          accentColor: Colors.black),
+      darkTheme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          scaffoldBackgroundColor: Colors.black,
+          brightness: Brightness.dark,
+          primaryColor: Colors.black,
+          accentColor: Colors.white),
       home: MyHomePage(),
     );
   }
@@ -86,7 +94,8 @@ class _ResultsYearsState extends State<ResultsYears> {
     return Expanded(
         child: Container(
             height: 250,
-            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            decoration: BoxDecoration(
+                border: Border.all(color: Theme.of(context).accentColor)),
             child: Column(
               children: [
                 Text(
@@ -108,7 +117,8 @@ class _ResultsYearsState extends State<ResultsYears> {
     return Expanded(
         child: Container(
             height: 250,
-            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            decoration: BoxDecoration(
+                border: Border.all(color: Theme.of(context).accentColor)),
             child: Column(
               children: [
                 Text(
@@ -130,7 +140,8 @@ class _ResultsYearsState extends State<ResultsYears> {
     return Expanded(
         child: Container(
             height: 250,
-            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            decoration: BoxDecoration(
+                border: Border.all(color: Theme.of(context).accentColor)),
             child: Column(
               children: [
                 Text(
@@ -191,7 +202,6 @@ class _ResultsYearsState extends State<ResultsYears> {
     );
   }
 
-
   DateTime startDate;
   DateTime endDate;
 
@@ -231,11 +241,20 @@ class _ResultsYearsState extends State<ResultsYears> {
   }
 
   // the date picker which lets the user to pick dates(start date)
+
   void startDatePicker() {
+    new DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
     DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: DateTime(1900, 1, 1),
-        maxTime: DateTime(2100, 12, 31), onChanged: (date) {
+        maxTime: DateTime(2100, 12, 31),
+        theme: DatePickerTheme(
+            backgroundColor: Theme.of(context).primaryColor,
+            itemStyle: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+            doneStyle: TextStyle(color: Colors.white, fontSize: 16),
+            cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)),
+        onChanged: (date) {
       setState(() {
         startDate = date;
         startDateLabel = DateFormat.yMMMMd().format(date);
@@ -256,10 +275,18 @@ class _ResultsYearsState extends State<ResultsYears> {
 
   // the date picker which lets the user pick dates(end date)
   void endDatePicker() {
+    DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
     DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: startDate,
-        maxTime: DateTime(2100, 12, 31), onChanged: (date) {
+        maxTime: DateTime(2100, 12, 31),
+        theme: DatePickerTheme(
+            backgroundColor: Theme.of(context).primaryColor,
+            itemStyle: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+            doneStyle: TextStyle(color: Colors.white, fontSize: 16),
+            cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)),
+        onChanged: (date) {
       setState(() {
         endDate = date;
         endDateLabel = DateFormat.yMMMMd().format(date);
@@ -308,7 +335,8 @@ class _ResultsYearsState extends State<ResultsYears> {
   Widget resultContainer() {
     return Container(
       margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
-      decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+      decoration: BoxDecoration(
+          border: Border.all(color: Theme.of(context).accentColor)),
       child: Row(
         children: [yearLabel(), monthLabel(), dayLabel()],
       ),
@@ -336,7 +364,8 @@ class _ResultsYearsState extends State<ResultsYears> {
         height: height / 10,
         width: width,
         color: Colors.blue[800],
-        child: Center(child:Text(
+        child: Center(
+            child: Text(
           "© Umesh Kumar Sarkar",
           textScaleFactor: 1.5,
           style: TextStyle(
