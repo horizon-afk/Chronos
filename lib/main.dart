@@ -208,9 +208,12 @@ class _ResultsYearsState extends State<ResultsYears> {
   void updateYYMMDD(int totalDays) {
     if (totalDays < 30) {
       days = totalDays;
+      months = 0;
+      years = 0;
     } else if (totalDays < 365) {
       months = totalDays ~/ 30;
       days = totalDays % 30;
+      years = 0;
     } else {
       years = totalDays ~/ 365;
       int remainingDays = totalDays % 365;
@@ -242,7 +245,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: DateTime(1900, 1, 1),
-        maxTime: DateTime(2100, 12, 31),
+        maxTime: endDate,
         theme: DatePickerTheme(
             backgroundColor: Theme.of(context).primaryColor == Colors.black ? Colors.white : Colors.black,
             itemStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: 18),
