@@ -14,14 +14,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chronos',
       theme: ThemeData(
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          accentColor: Colors.black),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primaryColor: Colors.black,
+      ),
       darkTheme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
           scaffoldBackgroundColor: Colors.black,
           brightness: Brightness.dark,
-          primaryColor: Colors.black,
-          accentColor: Colors.white),
+          primaryColor: Colors.white),
       home: MyHomePage(),
     );
   }
@@ -53,8 +53,7 @@ class _ResultsYearsState extends State<ResultsYears> {
   Widget startDateInput() {
     return Container(
         margin: EdgeInsets.fromLTRB(25, 60, 17, 0),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Container(
               child: Text(
             "Start Date",
@@ -68,8 +67,7 @@ class _ResultsYearsState extends State<ResultsYears> {
   Widget endDateInput() {
     return Container(
         margin: EdgeInsets.fromLTRB(25, 5, 17, 0),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Container(
               child: Text(
             "End Date",
@@ -94,8 +92,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     return Expanded(
         child: Container(
             height: 250,
-            decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).accentColor)),
+            decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor)),
             child: Column(
               children: [
                 Text(
@@ -117,8 +114,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     return Expanded(
         child: Container(
             height: 250,
-            decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).accentColor)),
+            decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor)),
             child: Column(
               children: [
                 Text(
@@ -140,8 +136,7 @@ class _ResultsYearsState extends State<ResultsYears> {
     return Expanded(
         child: Container(
             height: 250,
-            decoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).accentColor)),
+            decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor)),
             child: Column(
               children: [
                 Text(
@@ -243,21 +238,20 @@ class _ResultsYearsState extends State<ResultsYears> {
   // the date picker which lets the user to pick dates(start date)
 
   void startDatePicker() {
-    new DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
+    DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
     DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: DateTime(1900, 1, 1),
         maxTime: DateTime(2100, 12, 31),
         theme: DatePickerTheme(
-            backgroundColor: Theme.of(context).primaryColor,
-            itemStyle: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
-            doneStyle: TextStyle(color: Colors.white, fontSize: 16),
-            cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)),
-        onChanged: (date) {
+            backgroundColor: Theme.of(context).primaryColor == Colors.black ? Colors.white : Colors.black,
+            itemStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: 18),
+            doneStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
+            cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)), onChanged: (date) {
       setState(() {
         startDate = date;
         startDateLabel = DateFormat.yMMMMd().format(date);
+
         updateTotalDays();
         updateTotalHours();
         updateYYMMDD(total_days);
@@ -281,12 +275,10 @@ class _ResultsYearsState extends State<ResultsYears> {
         minTime: startDate,
         maxTime: DateTime(2100, 12, 31),
         theme: DatePickerTheme(
-            backgroundColor: Theme.of(context).primaryColor,
-            itemStyle: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
-            doneStyle: TextStyle(color: Colors.white, fontSize: 16),
-            cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)),
-        onChanged: (date) {
+            backgroundColor: Theme.of(context).primaryColor == Colors.black ? Colors.white : Colors.black,
+            itemStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: 18),
+            doneStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
+            cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)), onChanged: (date) {
       setState(() {
         endDate = date;
         endDateLabel = DateFormat.yMMMMd().format(date);
@@ -335,8 +327,7 @@ class _ResultsYearsState extends State<ResultsYears> {
   Widget resultContainer() {
     return Container(
       margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
-      decoration: BoxDecoration(
-          border: Border.all(color: Theme.of(context).accentColor)),
+      decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor)),
       child: Row(
         children: [yearLabel(), monthLabel(), dayLabel()],
       ),
@@ -376,9 +367,6 @@ class _ResultsYearsState extends State<ResultsYears> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [app(), credits()]));
+    return Container(child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [app(), credits()]));
   }
 }
