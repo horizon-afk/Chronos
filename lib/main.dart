@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
@@ -252,17 +251,17 @@ class _ResultsYearsState extends State<ResultsYears> {
             doneStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
             cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)), onChanged: (date) {
       setState(() {
-        startDate = date;
         startDateLabel = DateFormat.yMMMMd().format(date);
-
+        startDate = DateFormat("yMMMMd").parse(startDateLabel);
         updateTotalDays();
         updateTotalHours();
         updateYYMMDD(total_days);
       });
     }, onConfirm: (date) {
       setState(() {
-        startDate = date;
         startDateLabel = DateFormat.yMMMMd().format(date);
+        startDate = DateFormat("yMMMMd").parse(startDateLabel);
+
         updateTotalDays();
         updateTotalHours();
         updateYYMMDD(total_days);
@@ -283,16 +282,18 @@ class _ResultsYearsState extends State<ResultsYears> {
             doneStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
             cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)), onChanged: (date) {
       setState(() {
-        endDate = date;
         endDateLabel = DateFormat.yMMMMd().format(date);
+        endDate = DateFormat("yMMMMd").parse(endDateLabel);
+
         updateTotalDays();
         updateTotalHours();
         updateYYMMDD(total_days);
       });
     }, onConfirm: (date) {
       setState(() {
-        endDate = date;
         endDateLabel = DateFormat.yMMMMd().format(date);
+        endDate = DateFormat("yMMMMd").parse(endDateLabel);
+
         updateTotalDays();
         updateTotalHours();
         updateYYMMDD(total_days);
