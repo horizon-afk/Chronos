@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:chronos/custom_widgets.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,7 +59,7 @@ class _ResultsYearsState extends State<ResultsYears> {
             "Start Date",
             textScaleFactor: 1.5,
           )),
-          startPicker(),
+          DatePickerButton('$startDateLabel', startDatePicker).datePickerPrompt(context),
         ]));
   }
 
@@ -72,7 +73,7 @@ class _ResultsYearsState extends State<ResultsYears> {
             "End Date",
             textScaleFactor: 1.5,
           )),
-          endPicker(),
+          DatePickerButton('$endDateLabel', endDatePicker).datePickerPrompt(context),
         ]));
   }
 
@@ -86,112 +87,16 @@ class _ResultsYearsState extends State<ResultsYears> {
     );
   }
 
-  // the left part of middle box containing year with the output
-  Widget yearLabel() {
-    return Expanded(
-        child: Container(
-            height: 250,
-            decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor)),
-            child: Column(
-              children: [
-                Text(
-                  "Years",
-                  textScaleFactor: 1.6,
-                ),
-                Container(
-                    margin: EdgeInsets.only(top: 75),
-                    child: Text(
-                      "$years",
-                      textScaleFactor: 3,
-                    ))
-              ],
-            )));
-  }
-
-  // the middle part of middle box containing month with the output
-  Widget monthLabel() {
-    return Expanded(
-        child: Container(
-            height: 250,
-            decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor)),
-            child: Column(
-              children: [
-                Text(
-                  "Months",
-                  textScaleFactor: 1.6,
-                ),
-                Container(
-                    margin: EdgeInsets.only(top: 75),
-                    child: Text(
-                      "$months",
-                      textScaleFactor: 3,
-                    ))
-              ],
-            )));
-  }
-
-  // the right part of middle box containing days with the output
-  Widget dayLabel() {
-    return Expanded(
-        child: Container(
-            height: 250,
-            decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor)),
-            child: Column(
-              children: [
-                Text(
-                  "Days",
-                  textScaleFactor: 1.6,
-                ),
-                Container(
-                    margin: EdgeInsets.only(top: 75),
-                    child: Text(
-                      "$days",
-                      textScaleFactor: 3,
-                    ))
-              ],
-            )));
-  }
-
-  // this label shows the total number of days including the days in years and months
-  Widget totalDays() {
-    return Container(
-        child: Column(
-      children: [
-        Container(child: Text("Total Days", textScaleFactor: 1.5)),
-        Container(
-          child: Text("$total_days", textScaleFactor: 2),
-        )
-      ],
-    ));
-  }
-
-  // this label shows the total number of hours including the hours in years and months
-  Widget totalHours() {
-    return Container(
-        child: Column(
-      children: [
-        Container(
-            child: Text(
-          "Total Hours",
-          textScaleFactor: 1.5,
-        )),
-        Container(
-          child: Text(
-            "$total_hours",
-            textScaleFactor: 2,
-          ),
-        )
-      ],
-    ));
-  }
-
   // the bottom row which shows the total days and total hours
   Widget totalValues() {
     return Container(
       margin: EdgeInsets.only(left: 25, top: 10, right: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [totalDays(), totalHours()],
+        children: [
+          TotalValues("Total Days", total_days).totalData(context),
+          TotalValues("Total Hours", total_hours).totalData(context)
+        ],
       ),
     );
   }
@@ -301,39 +206,17 @@ class _ResultsYearsState extends State<ResultsYears> {
     });
   }
 
-  // the button which opens the start date picker
-  Widget startPicker() {
-    return Container(
-        child: TextButton(
-            onPressed: startDatePicker,
-            child: Container(
-                child: Text(
-              '$startDateLabel',
-              style: TextStyle(color: Colors.blue),
-              textScaleFactor: 1.5,
-            ))));
-  }
-
-  // the button which opens the end date picker
-  Widget endPicker() {
-    return Container(
-        child: TextButton(
-            onPressed: endDatePicker,
-            child: Container(
-                child: Text(
-              '$endDateLabel',
-              style: TextStyle(color: Colors.blue),
-              textScaleFactor: 1.5,
-            ))));
-  }
-
   // the main box which contains the years, months and days
   Widget resultContainer() {
     return Container(
       margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
       decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor)),
       child: Row(
-        children: [yearLabel(), monthLabel(), dayLabel()],
+        children: [
+          OutputBox("Years", years).label(context),
+          OutputBox("Months", months).label(context),
+          OutputBox("Days", days).label(context)
+        ],
       ),
     );
   }
