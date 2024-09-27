@@ -4,11 +4,10 @@ class OutputBox {
   String textOutput;
   int numberOutput;
 
-  OutputBox(String prompt, int number) {
-    textOutput = prompt;
+  OutputBox(String prompt, int number) :
+    textOutput = prompt,
     numberOutput = number;
   
-  }
 
   Widget label(BuildContext context) {
     return Expanded(
@@ -38,10 +37,10 @@ class DatePickerButton {
   String prompt;
   void Function() event;
 
-  DatePickerButton(String output, void Function() process) {
-    prompt = output;
+  DatePickerButton(String output, void Function() process) :
+    prompt = output,
     event = process;
-  }
+  
 
   Widget datePickerPrompt(BuildContext context) {
     return Container(
@@ -60,10 +59,10 @@ class TotalValues {
   String prompt;
   int number;
 
-  TotalValues(String output, int value) {
-    prompt = output;
+  TotalValues(String output, int value) :
+    prompt = output,
     number = value;
-  }
+  
   Widget totalData(BuildContext context) {
     return Container(
         child: Column(

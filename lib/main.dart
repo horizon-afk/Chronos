@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as dtp;
-=======
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
->>>>>>> b393037648ccb0ba0ec0b33ebfaef4fc89f5802a
 import 'package:intl/intl.dart';
 import 'package:chronos/custom_widgets.dart';
 
@@ -91,7 +87,6 @@ class _ResultsYearsState extends State<ResultsYears> {
     );
   }
 
-<<<<<<< HEAD
   // the left part of middle box containing year with the output
   Widget yearLabel() {
     return Expanded(
@@ -191,8 +186,6 @@ class _ResultsYearsState extends State<ResultsYears> {
     ));
   }
 
-=======
->>>>>>> b393037648ccb0ba0ec0b33ebfaef4fc89f5802a
   // the bottom row which shows the total days and total hours
   Widget totalValues() {
     return Container(
@@ -313,7 +306,6 @@ class _ResultsYearsState extends State<ResultsYears> {
     });
   }
 
-<<<<<<< HEAD
   // the button which opens the start date picker
   Widget startPicker() {
     return Container(
@@ -340,8 +332,6 @@ class _ResultsYearsState extends State<ResultsYears> {
             ))));
   }
 
-=======
->>>>>>> b393037648ccb0ba0ec0b33ebfaef4fc89f5802a
   // the main box which contains the years, months and days
   Widget resultContainer() {
     return Container(
