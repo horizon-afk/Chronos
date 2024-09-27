@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as dtp;
 import 'package:intl/intl.dart';
 
 void main() {
@@ -97,13 +96,13 @@ class _ResultsYearsState extends State<ResultsYears> {
               children: [
                 Text(
                   "Years",
-                  textScaleFactor: 1.6,
+                  textScaler: TextScaler.linear(1.6),
                 ),
                 Container(
                     margin: EdgeInsets.only(top: 75),
                     child: Text(
                       "$years",
-                      textScaleFactor: 3,
+                      textScaler: TextScaler.linear(3),
                     ))
               ],
             )));
@@ -158,9 +157,9 @@ class _ResultsYearsState extends State<ResultsYears> {
     return Container(
         child: Column(
       children: [
-        Container(child: Text("Total Days", textScaleFactor: 1.5)),
+        Container(child: Text("Total Days", textScaler: TextScaler.linear(1.5))),
         Container(
-          child: Text("$total_days", textScaleFactor: 2),
+          child: Text("$total_days", textScaler: TextScaler.linear(2)),
         )
       ],
     ));
@@ -174,12 +173,12 @@ class _ResultsYearsState extends State<ResultsYears> {
         Container(
             child: Text(
           "Total Hours",
-          textScaleFactor: 1.5,
+          textScaler: TextScaler.linear(1.5),
         )),
         Container(
           child: Text(
             "$total_hours",
-            textScaleFactor: 2,
+            textScaler: TextScaler.linear(2),
           ),
         )
       ],
@@ -197,8 +196,8 @@ class _ResultsYearsState extends State<ResultsYears> {
     );
   }
 
-  DateTime startDate;
-  DateTime endDate;
+  late DateTime startDate;
+  late DateTime endDate;
 
   // this is shown as a string so as to print the button from displaying null
   String startDateLabel = "MMMM, DD, YYYY";
@@ -241,12 +240,12 @@ class _ResultsYearsState extends State<ResultsYears> {
   // the date picker which lets the user to pick dates(start date)
 
   void startDatePicker() {
-    DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
-    DatePicker.showDatePicker(context,
+    dtp.DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
+    dtp.DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: DateTime(1900, 1, 1),
         maxTime: endDate,
-        theme: DatePickerTheme(
+        theme: dtp.DatePickerTheme(
             backgroundColor: Theme.of(context).primaryColor == Colors.black ? Colors.white : Colors.black,
             itemStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: 18),
             doneStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
@@ -272,12 +271,13 @@ class _ResultsYearsState extends State<ResultsYears> {
 
   // the date picker which lets the user pick dates(end date)
   void endDatePicker() {
-    DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
-    DatePicker.showDatePicker(context,
+    dtp.DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
+    //DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
+    dtp.DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: startDate,
         maxTime: DateTime(2100, 12, 31),
-        theme: DatePickerTheme(
+        theme: dtp.DatePickerTheme(
             backgroundColor: Theme.of(context).primaryColor == Colors.black ? Colors.white : Colors.black,
             itemStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: 18),
             doneStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
@@ -322,7 +322,7 @@ class _ResultsYearsState extends State<ResultsYears> {
                 child: Text(
               '$endDateLabel',
               style: TextStyle(color: Colors.blue),
-              textScaleFactor: 1.5,
+              textScaler: TextScaler.linear(1.5),
             ))));
   }
 
