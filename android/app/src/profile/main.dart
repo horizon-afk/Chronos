@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as dtp;
-=======
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
->>>>>>> b393037648ccb0ba0ec0b33ebfaef4fc89f5802a
 import 'package:intl/intl.dart';
-import 'package:chronos/custom_widgets.dart';
 
 void main() {
   runApp(MyApp());
@@ -63,7 +58,7 @@ class _ResultsYearsState extends State<ResultsYears> {
             "Start Date",
             textScaleFactor: 1.5,
           )),
-          DatePickerButton('$startDateLabel', startDatePicker).datePickerPrompt(context),
+          startPicker(),
         ]));
   }
 
@@ -77,7 +72,7 @@ class _ResultsYearsState extends State<ResultsYears> {
             "End Date",
             textScaleFactor: 1.5,
           )),
-          DatePickerButton('$endDateLabel', endDatePicker).datePickerPrompt(context),
+          endPicker(),
         ]));
   }
 
@@ -91,7 +86,6 @@ class _ResultsYearsState extends State<ResultsYears> {
     );
   }
 
-<<<<<<< HEAD
   // the left part of middle box containing year with the output
   Widget yearLabel() {
     return Expanded(
@@ -102,13 +96,13 @@ class _ResultsYearsState extends State<ResultsYears> {
               children: [
                 Text(
                   "Years",
-                  textScaler: TextScaler.linear(1.6),
+                  textScaleFactor: 1.6,
                 ),
                 Container(
                     margin: EdgeInsets.only(top: 75),
                     child: Text(
                       "$years",
-                      textScaler: TextScaler.linear(3),
+                      textScaleFactor: 3,
                     ))
               ],
             )));
@@ -163,9 +157,9 @@ class _ResultsYearsState extends State<ResultsYears> {
     return Container(
         child: Column(
       children: [
-        Container(child: Text("Total Days", textScaler: TextScaler.linear(1.5))),
+        Container(child: Text("Total Days", textScaleFactor: 1.5)),
         Container(
-          child: Text("$total_days", textScaler: TextScaler.linear(2)),
+          child: Text("$total_days", textScaleFactor: 2),
         )
       ],
     ));
@@ -179,36 +173,31 @@ class _ResultsYearsState extends State<ResultsYears> {
         Container(
             child: Text(
           "Total Hours",
-          textScaler: TextScaler.linear(1.5),
+          textScaleFactor: 1.5,
         )),
         Container(
           child: Text(
             "$total_hours",
-            textScaler: TextScaler.linear(2),
+            textScaleFactor: 2,
           ),
         )
       ],
     ));
   }
 
-=======
->>>>>>> b393037648ccb0ba0ec0b33ebfaef4fc89f5802a
   // the bottom row which shows the total days and total hours
   Widget totalValues() {
     return Container(
       margin: EdgeInsets.only(left: 25, top: 10, right: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          TotalValues("Total Days", total_days).totalData(context),
-          TotalValues("Total Hours", total_hours).totalData(context)
-        ],
+        children: [totalDays(), totalHours()],
       ),
     );
   }
 
-  late DateTime startDate;
-  late DateTime endDate;
+  DateTime startDate;
+  DateTime endDate;
 
   // this is shown as a string so as to print the button from displaying null
   String startDateLabel = "MMMM, DD, YYYY";
@@ -251,28 +240,28 @@ class _ResultsYearsState extends State<ResultsYears> {
   // the date picker which lets the user to pick dates(start date)
 
   void startDatePicker() {
-    dtp.DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
-    dtp.DatePicker.showDatePicker(context,
+    DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
+    DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: DateTime(1900, 1, 1),
         maxTime: endDate,
-        theme: dtp.DatePickerTheme(
+        theme: DatePickerTheme(
             backgroundColor: Theme.of(context).primaryColor == Colors.black ? Colors.white : Colors.black,
             itemStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: 18),
             doneStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
             cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)), onChanged: (date) {
       setState(() {
+        startDate = date;
         startDateLabel = DateFormat.yMMMMd().format(date);
-        startDate = DateFormat("yMMMMd").parse(startDateLabel);
+
         updateTotalDays();
         updateTotalHours();
         updateYYMMDD(total_days);
       });
     }, onConfirm: (date) {
       setState(() {
+        startDate = date;
         startDateLabel = DateFormat.yMMMMd().format(date);
-        startDate = DateFormat("yMMMMd").parse(startDateLabel);
-
         updateTotalDays();
         updateTotalHours();
         updateYYMMDD(total_days);
@@ -282,30 +271,27 @@ class _ResultsYearsState extends State<ResultsYears> {
 
   // the date picker which lets the user pick dates(end date)
   void endDatePicker() {
-    dtp.DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
-    //DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
-    dtp.DatePicker.showDatePicker(context,
+    DatePickerTheme(backgroundColor: Theme.of(context).primaryColor);
+    DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: startDate,
         maxTime: DateTime(2100, 12, 31),
-        theme: dtp.DatePickerTheme(
+        theme: DatePickerTheme(
             backgroundColor: Theme.of(context).primaryColor == Colors.black ? Colors.white : Colors.black,
             itemStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: 18),
             doneStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
             cancelStyle: TextStyle(color: Colors.grey, fontSize: 16)), onChanged: (date) {
       setState(() {
+        endDate = date;
         endDateLabel = DateFormat.yMMMMd().format(date);
-        endDate = DateFormat("yMMMMd").parse(endDateLabel);
-
         updateTotalDays();
         updateTotalHours();
         updateYYMMDD(total_days);
       });
     }, onConfirm: (date) {
       setState(() {
+        endDate = date;
         endDateLabel = DateFormat.yMMMMd().format(date);
-        endDate = DateFormat("yMMMMd").parse(endDateLabel);
-
         updateTotalDays();
         updateTotalHours();
         updateYYMMDD(total_days);
@@ -313,7 +299,6 @@ class _ResultsYearsState extends State<ResultsYears> {
     });
   }
 
-<<<<<<< HEAD
   // the button which opens the start date picker
   Widget startPicker() {
     return Container(
@@ -336,23 +321,17 @@ class _ResultsYearsState extends State<ResultsYears> {
                 child: Text(
               '$endDateLabel',
               style: TextStyle(color: Colors.blue),
-              textScaler: TextScaler.linear(1.5),
+              textScaleFactor: 1.5,
             ))));
   }
 
-=======
->>>>>>> b393037648ccb0ba0ec0b33ebfaef4fc89f5802a
   // the main box which contains the years, months and days
   Widget resultContainer() {
     return Container(
       margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
       decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor)),
       child: Row(
-        children: [
-          OutputBox("Years", years).label(context),
-          OutputBox("Months", months).label(context),
-          OutputBox("Days", days).label(context)
-        ],
+        children: [yearLabel(), monthLabel(), dayLabel()],
       ),
     );
   }

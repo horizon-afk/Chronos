@@ -32,8 +32,12 @@ def keystoreProperties = new Properties()
     }
 
 android {
+<<<<<<< HEAD
     compileSdkVersion 29
     compileSdk 31
+=======
+    compileSdkVersion 31
+>>>>>>> b393037648ccb0ba0ec0b33ebfaef4fc89f5802a
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -46,8 +50,13 @@ android {
     defaultConfig {
         
         applicationId "com.umesh.chronos"
+<<<<<<< HEAD
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion 29
+=======
+        minSdkVersion 16
+        targetSdkVersion 33
+>>>>>>> b393037648ccb0ba0ec0b33ebfaef4fc89f5802a
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
